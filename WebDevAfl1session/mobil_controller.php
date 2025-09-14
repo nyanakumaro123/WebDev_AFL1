@@ -62,28 +62,19 @@ function updateMobil($mobilID) {
     return false;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['button_register'])) {
-        if (createMobil()) {
-            header("Location: mobil_view.php");
-            exit();
-        }
-    }
-    
-    if (isset($_POST['button_update'])) {
-        if (isset($_POST['input_id'])) {
-            updateMobil($_POST['input_id']);
-            header("Location: mobil_view.php");
-            exit();
-        }
-    }
+if (isset($_POST['button_register'])) {
+    createMobil();
+    header("Location:mobil_view.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['deleteID'])) {
-        deleteMobil($_GET['deleteID']);
-        header("Location: mobil_view.php");
-        exit();
-    }
+if (isset($_GET['deleteID'])) {
+    deleteMobil($_GET['deleteID']);
+    header("Location:mobil_view.php");
 }
+
+if (isset($_POST['button_update'])) {
+    updateMobil($_POST['input_id']);
+    header("Location:mobil_view.php");
+}
+
 ?>
